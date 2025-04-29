@@ -80,9 +80,20 @@ app.post("/pdf", async (req, res) => {
   }catch (error) {
     res.status(500).json({ error: error.message });
   }
-
-
-
-
   
 });
+
+app.post("/aisearch", async(req,res) =>{
+
+  const search= req.body.searchquery;
+  const ai = new GoogleGenAI({ apiKey:process.env.GEMINI_API_KEY });
+  console.log(search)
+  // async function 
+    const response = await ai.models.generateContent({
+      model: "gemini-2.0-flash",
+      contents:search,
+    });
+    console.log(response.text);
+    return res.status(200).json({contents:response.text})
+ 
+})
