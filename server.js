@@ -77,7 +77,7 @@ app.post("/pdf", async (req, res) => {
   
     const pdfExists = await pdfModel.findOne({ paperCode:paperCode,year:year});
     if(pdfExists) res.status(200).send(pdfExists.url)
-      else res.send("1vrcuvxwDwIl47_yjmhItoAu7kW0cRmDw")
+      else res.send("1aWcJF2gtzDrhuyu5Z5CTKeZGvVOv47tz")
   }catch (error) {
     res.status(500).json({ error: error.message });
   }
