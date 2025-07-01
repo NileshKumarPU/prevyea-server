@@ -14,7 +14,7 @@ const app = express();
 app.use(express.json());
 // app.use(cors());
 app.use(cors({
-  origin: "https://prevyea-server.vercel.app/",
+  origin: "https://prevyea-server.vercel.app",
   credentials: true
 }));
 app.use(cookieParser())
