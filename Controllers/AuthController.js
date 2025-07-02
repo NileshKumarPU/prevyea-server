@@ -91,6 +91,8 @@ export const Login = async (req, res, next) => {
       // withCredentials: true,
       secure:true,
       httpOnly: true,
+      sameSite: "None",
+      // maxAge: 1000 * 60 * 60,
       path: "/",
     });
     res
