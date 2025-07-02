@@ -72,7 +72,7 @@ export const Signup = async (req, res, next) => {
     res
       .status(201)
       .json({ message: "User Signed Up Successfully", success: true, user });
-    SendAck();
+    SendAck(email,username);
     next();
   } catch (error) {
     res.json({ message: "Oops! Try Again", success: false })
