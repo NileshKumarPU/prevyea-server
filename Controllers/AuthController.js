@@ -2,7 +2,7 @@ import { createSecretToken } from "../util/SecretToken.js";
 import User from "../Models/User.model.js";
 import bcrypt from "bcrypt";
 import mongoose from "mongoose";
-import { SendOTP, VerifyOTP } from "../util/EmailOTP.js";
+import { SendOTP, VerifyOTP,SendAck } from "../util/EmailOTP.js";
 
 
 
@@ -72,6 +72,7 @@ export const Signup = async (req, res, next) => {
     res
       .status(201)
       .json({ message: "User Signed Up Successfully", success: true, user });
+    SendAck();
     next();
   } catch (error) {
     res.json({ message: "Oops! Try Again", success: false })
