@@ -63,7 +63,8 @@ export const Signup = async (req, res, next) => {
     const user = User.create({ username, email, fullname, password,admin });
     const token = createSecretToken(user._id);
     res.cookie("token", token, {
-      withCredentials: true,
+      // withCredentials: true,
+      secure:true,
       httpOnly: true,
       sameSite: "None",
       path: "/",
