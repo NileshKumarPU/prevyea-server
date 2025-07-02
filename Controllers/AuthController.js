@@ -5,8 +5,23 @@ import mongoose from "mongoose";
 import { SendOTP, VerifyOTP } from "../util/EmailOTP.js";
 
 
-let expiresAt = 0;
 
+
+export const logOut = async(req,res)=>{
+  try {
+    
+    res.clearCookie("token", {
+      secure: true,
+      httpOnly: true,
+      sameSite: "None",
+      path: "/",
+    });
+    res.status(200).json({success:true, message: "Logged out successfully" });
+  } catch (error) {
+    res.status(501).json({success:false,message:"Logout failed"})
+  }
+}
+let expiresAt = 0;
 export const requestOTP = async (req, res) => {
   const { email } = req.body;
    const existinguser = await User.findOne({ email: email });
@@ -49,7 +64,9 @@ export const Signup = async (req, res, next) => {
     const token = createSecretToken(user._id);
     res.cookie("token", token, {
       withCredentials: true,
-      httpOnly: false,
+      httpOnly: true,
+      sameSite: "None",
+      path: "/",
     });
     res
       .status(201)
