@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken"
 
 export const userVerification = (req,res) =>{
     const token = req.cookies.token;
-    if(!token || token=="undefined"){
+    if(!token ){
         return res.json({message:"Not Authenticated",status:false})
     }
     

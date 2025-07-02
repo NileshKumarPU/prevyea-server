@@ -10,11 +10,25 @@ import cookieParser from "cookie-parser";
 import AuthRoute from "./Routes/AuthRoute.js"
 dotenv.config();
 
+// Define allowed origins
+const allowedOrigins = [
+  "http://localhost:5173",
+   "https://prevyea.vercel.app"
+];
+
 const app = express();
 app.use(express.json());
 // app.use(cors());
 app.use(cors({
-  origin: "https://prevyea.vercel.app",
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps, curl, postman)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true
 }));
 app.use(cookieParser())
