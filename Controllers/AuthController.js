@@ -41,7 +41,7 @@ export const verifyOTP = async (req, res) => {
   const {  email,otp } = req.body;
  
   
-  if (Date.now() > expiresAt) return res.json({success:false, message: 'OTP expired' });
+  if (Date.now() > expiresAt){ return res.json({success:false, message: 'OTP expired' });}
 
     const authResult = await VerifyOTP(email, otp);
     
