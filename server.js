@@ -8,7 +8,7 @@ import { CloudinaryStorage } from "multer-storage-cloudinary";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import AuthRoute from "./Routes/AuthRoute.js"
-import { PrismaClient } from "./generated/prisma"
+import { PrismaClient } from "@prisma/client"
 dotenv.config();
 
 // Define allowed origins
