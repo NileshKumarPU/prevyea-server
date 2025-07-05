@@ -8,6 +8,7 @@ import { CloudinaryStorage } from "multer-storage-cloudinary";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import AuthRoute from "./Routes/AuthRoute.js"
+import { PrismaClient } from "@prisma/client";
 dotenv.config();
 
 // Define allowed origins
@@ -36,6 +37,19 @@ app.use("/", AuthRoute)
 
 app.listen(process.env.PORT || 8000, () => {
   console.log(`running at ${process.env.PORT}`);
+});
+
+
+const prisma = new PrismaClient();
+app.get('/users', async (req, res) => {
+  const users = await prisma.user.findMany();
+  res.json(users);
+});
+
+app.post('/users', async (req, res) => {
+  const { name, email } = req.body;
+  const user = await prisma.user.create({ data: { name, email } });
+  res.json(user);
 });
 
 mongoose
