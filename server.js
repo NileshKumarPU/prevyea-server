@@ -1,3 +1,4 @@
+import { PrismaClient } from "./generated/prisma/index.js";
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
@@ -8,7 +9,6 @@ import { CloudinaryStorage } from "multer-storage-cloudinary";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import AuthRoute from "./Routes/AuthRoute.js"
-import { PrismaClient } from "@prisma/client"
 dotenv.config();
 
 // Define allowed origins
