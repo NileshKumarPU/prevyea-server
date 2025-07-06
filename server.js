@@ -107,9 +107,9 @@ app.post("/aisearch", async (req, res) => {
 // CLOUDINARY + MULTER SETUP
 
 cloudinary.config({
-  cloud_name: "dwpc2rgdn",
-  api_key: "735635713731662",
-  api_secret: "GCAd7eyFt787IgEywVyCHJvCDNU",
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret:process.env.CLOUDINARY_SECRET_KEY,
 });
 
 const storage = new CloudinaryStorage({
