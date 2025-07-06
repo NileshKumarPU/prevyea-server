@@ -1,4 +1,4 @@
-import { PrismaClient } from "./generated/prisma/index.js";
+
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
@@ -40,18 +40,8 @@ app.listen(process.env.PORT || 8000, () => {
 });
 
 
-const prisma = new PrismaClient();
 
-app.get('/users', async (req, res) => {
-  const users = await prisma.user.findMany();
-  res.json(users);
-});
 
-app.post('/users', async (req, res) => {
-  const { username, email,fullname } = req.body;
-  const user = await prisma.user.create({ data: { username, email,fullname } });
-  res.json(user);
-});
 
 mongoose
   .connect(process.env.URI)

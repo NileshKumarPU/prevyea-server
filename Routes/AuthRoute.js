@@ -8,6 +8,7 @@ router.post("/login", Login);
 router.post("/logout",logOut);
 router.post("/otp",requestOTP);
 router.post("/verify",verifyOTP);
+
 router.post("/", userVerification);
 
 export default router;
