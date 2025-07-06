@@ -14,6 +14,7 @@ export const userVerification = (req,res) =>{
         if(err) return res.json({status:false})
         else{
             const user= await prisma.user.findUnique({where:{id:decoded.id}})
+            console.log(id,decoded.id,user);
             if(user) {return res.json({status:true, user:user.username,admin:user.admin,email:user.email,fullname:user.fullname});}
                 else {return res.json({status:false});}
         }
