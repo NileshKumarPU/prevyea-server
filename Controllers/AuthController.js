@@ -63,7 +63,8 @@ export const verifyOTP = async (req, res) => {
 
 export const Signup = async (req, res, next) => {
   try {
-    const { username, email, fullname, password,admin } = req.body;
+    const { username, email, fullname,admin } = req.body;
+    const password = await bcrypt.hash(req.body.password, 10)
     const user = await prisma.user.create({ data: { username, email,fullname,password,admin } });
     const token = createSecretToken(user.id);
     res.cookie("token", token, {
