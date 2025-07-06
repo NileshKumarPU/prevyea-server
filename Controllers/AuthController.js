@@ -26,7 +26,7 @@ export const logOut = async(req,res)=>{
 let expiresAt = 0;
 export const requestOTP = async (req, res) => {
   const { email } = req.body;
-   const existinguser = await User.findOne({ email: email });
+   const existinguser = await prisma.user.findUnique({where:{email:email}})
     if (existinguser) return res.json({success:false, message: "E-mail Already Registered" });
   try {
     await SendOTP(email);
