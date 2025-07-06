@@ -9,7 +9,7 @@ router.post("/logout",logOut);
 router.post("/otp",requestOTP);
 router.post("/verify",verifyOTP);
 router.post("/forgotpassreqotp",forgotpass_reqOTP)
-router.post("resetpass",resetPass);
+router.post("/resetpass",resetPass);
 router.post("/", userVerification);
 
 export default router;
