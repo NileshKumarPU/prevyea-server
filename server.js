@@ -48,8 +48,8 @@ app.get('/users', async (req, res) => {
 });
 
 app.post('/users', async (req, res) => {
-  const { name, email } = req.body;
-  const user = await prisma.user.create({ data: { name, email } });
+  const { username, email,fullname } = req.body;
+  const user = await prisma.user.create({ data: { username, email,fullname } });
   res.json(user);
 });
 

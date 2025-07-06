@@ -18,10 +18,10 @@ model User {
   id           Int      @id @default(autoincrement())
   username     String
   email        String   @unique
-  fullname     String
-  password     String
-  admin        Boolean  @default(false)
-  refreshtoken String
+  fullname     String?
+  password     String?
+  admin        Boolean? @default(false)
+  refreshtoken String?
   createdAt    DateTime @default(now())
   UpdatedAt    DateTime @updatedAt
 }
