@@ -73,7 +73,7 @@ export const resetPass = async (req, res) => {
         });
 
       } catch (error) {
-        return res.json({error:error});
+        return res.json({success:false, message:error});
       }
       res.json({ success: true, message: "Password Updated!" });
     } else {
@@ -83,6 +83,7 @@ export const resetPass = async (req, res) => {
     res.json({ success: false, message: "Verification Error, Try Again" });
   }
 };
+
 export const verifyOTP = async (req, res) => {
   try {
     const { email, otp } = req.body;
