@@ -8,7 +8,7 @@ import { SendOTP, VerifyOTP,SendAck } from "../util/EmailOTP.js";
 
 
 const prisma = new PrismaClient();
-
+ 
 export const logOut = async(req,res)=>{
   try {
     
@@ -115,7 +115,9 @@ export const Login = async (req, res, next) => {
     }
     
    
-    const token = createSecretToken(existinguser._id);
+    const token = createSecretToken(existinguser.id);
+    console.log(token);
+    
     res.cookie("token", token, {
       // withCredentials: true,
       secure:true,
@@ -128,5 +130,7 @@ export const Login = async (req, res, next) => {
       .status(201)
       .json({ message: "User Logged in Successfully!", success: true });
     next();
-  } catch (error) {}
+  } catch (error) {
+    res.json({msg:"login error"})
+  }
 };
