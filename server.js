@@ -21,9 +21,9 @@ const app = express();
 app.use(express.json());
 // app.use(cors());
 
-
+//"https://prevyea.vercel.app",
 app.use(cors({
-  origin: "https://prevyea.vercel.app", // ✅ exact frontend domain
+  origin: "http://localhost:5173/", // ✅ exact frontend domain
   credentials: true,                    // ✅ allow cookies
 }));
 // app.use(cors({
@@ -97,18 +97,26 @@ app.post("/pdf", async (req, res) => {
   }
 });
 
+//AI Search 
 app.post("/aisearch", async (req, res) => {
+  
   const search = req.body.searchquery;
   const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
+  console.log("inside");
+  
   // async function
   const response = await ai.models.generateContent({
-    model: "gemini-2.0-flash",
+    model: "gemini-3-flash-preview",
     contents: search,
   });
+  console.log("after async fn");
+  
  
   return res.status(200).json({ contents: response.text });
 });
+
+
 
 // CLOUDINARY + MULTER SETUP
 
