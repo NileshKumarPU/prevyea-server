@@ -23,7 +23,7 @@ app.use(express.json());
 
 //"https://prevyea.vercel.app",
 app.use(cors({
-  origin: "https://prevyea.vercel.app", // ✅ exact frontend domain
+  origin: "https://prevyea-old.vercel.app", // ✅ exact frontend domain
   credentials: true,                    // ✅ allow cookies
 }));
 // app.use(cors({
